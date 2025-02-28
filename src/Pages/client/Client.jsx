@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Button, Modal, Avatar } from 'antd'
+import { Table, Button, Modal, Avatar, Space, Image } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 import deleteUser from '../../assets/delete-user.png'
@@ -44,7 +44,13 @@ const Client = ({ dashboardHome }) => {
       key: 'clientName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <Avatar src={record.image} />
+          <Space>
+            <Image
+              preview
+              className="!w-[30px] !h-[30px] rounded-full "
+              src={record.image}
+            />
+          </Space>
           <span className="text-gray-900 font-medium">{text}</span>
         </div>
       ),

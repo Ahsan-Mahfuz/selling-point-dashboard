@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Button, Modal, Avatar } from 'antd'
+import { Table, Button, Modal, Avatar, Space, Image } from 'antd'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
 import { MdBlock } from 'react-icons/md'
 import { IoIosWarning } from 'react-icons/io'
@@ -43,8 +43,14 @@ const EarningsTable = () => {
       key: 'name',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <Avatar src={record.image} />
-          <span className="text-gray-900 font-medium">{text}</span>
+          <Space>
+            <Image
+              preview
+              className="!w-[30px] !h-[30px] rounded-full "
+              src={record.image}
+            />
+            {text}
+          </Space>
         </div>
       ),
     },

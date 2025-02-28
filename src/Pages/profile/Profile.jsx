@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Password from './Password'
-import { Avatar, Button, Form, Input, message, Upload } from 'antd'
+import { Avatar, Button, Form, Image, Input, message, Upload } from 'antd'
 import { UploadOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import profileImage from '../../assets/hye_logo.svg'
@@ -80,10 +80,13 @@ const Profile = () => {
       <div className=" flex flex-col items-center py-10">
         <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
           <div className="flex flex-col items-center">
-            <Avatar
+            <Image
               src={formData.image ? formData.image : profileImage}
               alt="Profile"
-              className="w-24 h-24 rounded-full border object-cover"
+              width={100}
+              height={100}
+              className="rounded-full border object-cover object-center"
+              preview={true}
             />
 
             {isEditing && (

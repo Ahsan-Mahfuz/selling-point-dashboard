@@ -9,6 +9,7 @@ import {
   Image,
   Select,
   Rate,
+  Space,
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
@@ -88,8 +89,14 @@ I'm sorry, but I need more specific instructions to generate the code you need. 
       key: 'talentName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <Avatar src={record.image} />
-          <span className="text-gray-900 font-medium">{text}</span>
+          <Space>
+            <Image
+              preview
+              className="!w-[30px] !h-[30px] rounded-full "
+              src={record.image}
+            />
+            {text}
+          </Space>
         </div>
       ),
     },

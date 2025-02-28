@@ -1,3 +1,4 @@
+import { Image } from 'antd'
 import React from 'react'
 import { FaTrashAlt } from 'react-icons/fa'
 import { RiEdit2Line } from 'react-icons/ri'
@@ -10,10 +11,11 @@ const ServiceCard = ({ service, onEdit, onDelete }) => {
   return (
     <div className="card glass w-80 shadow-md py-4 px-3 rounded-xl">
       <figure>
-        <img
+        <Image
           src={service.image}
           alt={service.name}
-          className="w-full h-48 object-cover rounded-md"
+          preview
+          className="!w-full object-cover rounded-md"
         />
       </figure>
       <div className="card-body">

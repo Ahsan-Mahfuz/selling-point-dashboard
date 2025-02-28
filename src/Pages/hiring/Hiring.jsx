@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Avatar, Tag, Space } from 'antd'
+import { Table, Avatar, Tag, Space, Image } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 const Hiring = () => {
@@ -133,7 +133,11 @@ const Hiring = () => {
       key: 'clientName',
       render: (text, record) => (
         <Space>
-          <Avatar src={record.clientImage} />
+          <Image
+            preview
+            className="!w-[30px] !h-[30px] rounded-full "
+            src={record.clientImage}
+          />
           {text}
         </Space>
       ),
@@ -144,7 +148,11 @@ const Hiring = () => {
       key: 'talentName',
       render: (text, record) => (
         <Space>
-          <Avatar src={record.talentImage} />
+          <Image
+            preview
+            className="!w-[30px] !h-[30px] rounded-full "
+            src={record.talentImage}
+          />
           {text}
         </Space>
       ),
