@@ -288,10 +288,12 @@ I'm sorry, but I need more specific instructions to generate the code you need. 
         >
           <div className="px-7 !text-xl">
             <div className="flex items-center justify-center">
-              <img
+              <Image
                 src={selectedUser.image}
                 alt={selectedUser.talentName}
                 className="w-32 h-32 rounded-full mb-4"
+                preview
+                
               />
             </div>
             <Tabs

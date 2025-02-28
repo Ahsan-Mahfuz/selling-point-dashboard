@@ -68,16 +68,17 @@ const Sidebar = () => {
             </NavLink>
           ))}
         </div>
-        <div
+        <Link
+          to={'/login'}
           className={`flex items-center text-red-500 font-bold py-3 rounded-3xl my-1 pl-6 hover:bg-red-200 cursor-pointer `}
         >
           <span>
             <CiLogout className="mr-4 text-2xl" />
           </span>
           <span>
-            <Link to={'/login'}>Log out</Link>
+            <div>Log out</div>
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   )
