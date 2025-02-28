@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Table, Button, Modal } from 'antd'
+import { Table, Button, Modal, Avatar } from 'antd'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
 import { MdBlock } from 'react-icons/md'
 import { IoIosWarning } from 'react-icons/io'
 import deleteUser from '../../assets/delete-user.png'
 import coin from '../../assets/coin.svg'
-
 
 const EarningsTable = () => {
   const data = [
@@ -44,7 +43,7 @@ const EarningsTable = () => {
       key: 'name',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <img src={record.image} alt="" className="w-12 h-12 rounded-full" />
+          <Avatar src={record.image} />
           <span className="text-gray-900 font-medium">{text}</span>
         </div>
       ),

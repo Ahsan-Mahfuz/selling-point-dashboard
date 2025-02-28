@@ -11,14 +11,18 @@ const servicesData = [
   {
     id: 1,
     name: 'Musician',
-    tags: ['Mediterranean', 'Mexican', 'Asian'],
+    styles: ['Mediterranean', 'Mexican', 'Asian'],
+    types: ['Live', 'Studio', 'Vocal'],
+    tools: ['Piano', 'Guitar', 'Microphone'],
     image:
       'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 2,
     name: 'Dancer',
-    tags: ['Mediterranean', 'Mexican', 'Asian'],
+    styles: ['Ballet', 'Jazz', 'Contemporary'],
+    types: ['Solo', 'Group', 'Choreography'],
+    tools: ['Studios', 'Music', 'Shoes'],
     image:
       'https://images.unsplash.com/photo-1613323593608-abc90fec84ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
@@ -40,7 +44,9 @@ const ServiceCategory = () => {
     setEditingService(service)
     form.setFieldsValue({
       name: service.name,
-      tags: service.tags.join(', '),
+      styles: service.styles.join(', '),
+      types: service.types.join(', '),
+      tools: service.tools.join(', '),
     })
     setImagePreview(service.image)
     setIsModalVisible(true)
@@ -62,8 +68,10 @@ const ServiceCategory = () => {
     form
       .validateFields()
       .then((values) => {
-        const { name, tags } = values
-        const tagList = tags.split(',').map((tag) => tag.trim())
+        const { name, styles, types, tools } = values
+        const stylesList = styles.split(',').map((style) => style.trim())
+        const typesList = types.split(',').map((type) => type.trim())
+        const toolsList = tools.split(',').map((tool) => tool.trim())
 
         if (editingService) {
           setServices(
@@ -72,7 +80,9 @@ const ServiceCategory = () => {
                 ? {
                     ...service,
                     name,
-                    tags: tagList,
+                    styles: stylesList,
+                    types: typesList,
+                    tools: toolsList,
                     image: imageFile
                       ? URL.createObjectURL(imageFile)
                       : editingService.image,
@@ -85,7 +95,9 @@ const ServiceCategory = () => {
           const newService = {
             id: services.length + 1,
             name,
-            tags: tagList,
+            styles: stylesList,
+            types: typesList,
+            tools: toolsList,
             image: imageFile ? URL.createObjectURL(imageFile) : '',
           }
           setServices([...services, newService])
@@ -132,7 +144,7 @@ const ServiceCategory = () => {
         </h1>
       </div>
 
-      <div className="flex items-center flex-wrap gap-x-20 gap-y-5">
+      <div className="flex items-center flex-wrap gap-x-5 gap-y-5">
         {services.map((service) => (
           <ServiceCard
             key={service.id}
@@ -142,7 +154,7 @@ const ServiceCategory = () => {
           />
         ))}
 
-        <div className="card bg-gray-200 w-[320px] h-[350px] p-6 rounded-lg flex flex-col justify-center items-center">
+        <div className="card bg-gray-200 w-[320px] h-[490px] p-6 rounded-lg flex flex-col justify-center items-center">
           <button
             onClick={handleAddNew}
             className="app-default-color text-xl px-4 py-2 rounded-md flex items-center gap-2"
@@ -183,7 +195,7 @@ const ServiceCategory = () => {
             rules={[
               { required: true, message: 'Please upload the service image!' },
             ]}
-            className='mt-5'
+            className="mt-5"
           >
             <Upload
               name="image"
@@ -218,7 +230,7 @@ const ServiceCategory = () => {
           </Form.Item>
 
           <Form.Item
-            name="tags"
+            name="styles"
             label="Add Service Style (comma separated)"
             rules={[
               {
@@ -235,7 +247,7 @@ const ServiceCategory = () => {
           </Form.Item>
 
           <Form.Item
-            name="tags"
+            name="types"
             label="Service Type (comma separated)"
             rules={[
               {
@@ -249,7 +261,7 @@ const ServiceCategory = () => {
           </Form.Item>
 
           <Form.Item
-            name="tags"
+            name="tools"
             label="Add Service Tool (comma separated)"
             rules={[
               {

@@ -15,6 +15,7 @@ import Profile from '../Pages/profile/Profile'
 import ServiceCategory from '../Pages/serviceCategory/ServiceCategory'
 import Client from '../Pages/client/Client'
 import Talents from '../Pages/talents/Talents'
+import Hiring from '../Pages/hiring/Hiring'
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
         path: '/talents',
         element: <Talents />,
       },
-     
+      {
+        path: '/hiring',
+        element: <Hiring />,
+      },
+
       {
         path: '/earnings',
         element: <Earnings />,

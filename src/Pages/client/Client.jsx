@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Button, Modal } from 'antd'
+import { Table, Button, Modal, Avatar } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 import deleteUser from '../../assets/delete-user.png'
@@ -16,7 +16,7 @@ const Client = ({ dashboardHome }) => {
     {
       key: '1',
       image: 'https://randomuser.me/api/portraits/men/1.jpg',
-      userName: 'Roosevelt Kozey',
+      clientName: 'Roosevelt Kozey',
       contactNumber: '388-790-9022',
       email: 'Eloise24@yahoo.com',
       credits: 300,
@@ -26,7 +26,7 @@ const Client = ({ dashboardHome }) => {
     {
       key: '2',
       image: 'https://randomuser.me/api/portraits/men/2.jpg',
-      userName: 'Russell Veum',
+      clientName: 'Russell Veum',
       contactNumber: '983-842-7095',
       email: 'Nigelt@hotmail.com',
       credits: 500,
@@ -44,7 +44,7 @@ const Client = ({ dashboardHome }) => {
       key: 'clientName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <img src={record.image} alt="" className="w-12 h-12 rounded-full" />
+          <Avatar src={record.image} />
           <span className="text-gray-900 font-medium">{text}</span>
         </div>
       ),

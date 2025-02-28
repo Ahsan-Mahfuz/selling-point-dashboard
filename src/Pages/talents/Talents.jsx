@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
-import { Table, Button, Modal } from 'antd'
+import {
+  Table,
+  Button,
+  Modal,
+  Tabs,
+  Avatar,
+  Tag,
+  Image,
+  Select,
+  Rate,
+} from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
 import deleteUser from '../../assets/delete-user.png'
 import { IoIosWarning } from 'react-icons/io'
+import coin from '../../assets/coin.svg'
 import { MdBlock } from 'react-icons/md'
 
 const Talents = () => {
@@ -15,38 +26,56 @@ const Talents = () => {
     {
       key: '1',
       image: 'https://randomuser.me/api/portraits/men/1.jpg',
-      userName: 'Roosevelt Kozey',
+      talentName: 'Roosevelt Kozey',
       contactNumber: '388-790-9022',
       email: 'Eloise24@yahoo.com',
-      totalBook: 3,
+      address: 'Rancho Santa Margarita, CA 92688',
       joined: '2025-01-10',
       status: 'Blocked',
-      categories: [
-        'cat1',
-        'cat2',
-        'cat3',
-        'cat1',
-        'cat2',
-        'cat3',
-        'cat1',
-        'cat2',
-        'cat3',
+      credits: 200,
+      isVerified: 'yes',
+      documents: ['document.png', 'document.png'],
+      bio: `
+I'm sorry, but I need more specific instructions to generate the code you need. Could you please provide more details?
+      `,
+      category: 'videography',
+      subCategory: [
+        'Musician',
+        'Dancer',
+        'Dancer',
+        'Dancer',
+        'Dancer',
+        'Dancer',
+        'Dancer',
       ],
-      reviews: 4.8,
-      reviewsNumber: 125,
+      rating: 4.5,
+      totalHired: 10,
+      completedWork: 105,
+      cancelledWork: 20,
+      totalReviews: 87,
     },
     {
       key: '2',
-      image: 'https://randomuser.me/api/portraits/men/2.jpg',
-      userName: 'Russell Veum',
-      contactNumber: '983-842-7095',
-      email: 'Nigelt@hotmail.com',
-      totalBook: 3,
+      image: 'https://randomuser.me/api/portraits/men/1.jpg',
+      talentName: 'Roosevelt Kozey',
+      contactNumber: '388-790-9022',
+      email: 'Eloise24@yahoo.com',
+      address: 'Rancho Santa Margarita, CA 92688',
       joined: '2025-01-10',
       status: 'Active',
-      reviews: 4,
-      reviewsNumber: 125,
-      categories: ['cat2', 'cat3'],
+      credits: 200,
+      isVerified: 'no',
+      documents: ['document.png', 'document.png'],
+      bio: `
+      I'm sorry, but I need more specific instructions to generate the code you need. Could you please provide more details?
+            `,
+      category: 'dj',
+      subCategory: ['Musician', 'Dancer'],
+      rating: 4.5,
+      totalHired: 10,
+      completedWork: 105,
+      cancelledWork: 20,
+      totalReviews: 87,
     },
   ]
 
@@ -59,7 +88,7 @@ const Talents = () => {
       key: 'talentName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
-          <img src={record.image} alt="" className="w-12 h-12 rounded-full" />
+          <Avatar src={record.image} />
           <span className="text-gray-900 font-medium">{text}</span>
         </div>
       ),
@@ -75,40 +104,40 @@ const Talents = () => {
       key: 'email',
     },
     {
-      title: 'Categories',
-      dataIndex: 'categories',
-      key: 'categories',
-      render: (categories) => (
-        <div className="flex flex-wrap gap-2 w-[300px]">
-          {categories.slice(0, 2).map((category, index) => (
-            <span
-              key={index}
-              className="px-4 py-2 bg-green-100 rounded-md text-green-800"
-            >
-              {category}
-            </span>
-          ))}
-          {categories.length > 2 && (
-            <span className="px-4 py-2 bg-green-100 rounded-md text-green-800">
-              +{categories.length - 2}
-            </span>
-          )}
-        </div>
-      ),
-    },
-    {
-      title: 'Total Bookings',
-      dataIndex: 'totalBook',
-      key: 'totalBook',
-      render: (text) => (
-        <span className="px-4 py-2 bg-blue-100 rounded-md">{text}</span>
-      ),
-    },
-    {
       title: 'Joined',
       dataIndex: 'joined',
       key: 'joined',
     },
+    {
+      title: 'Is Verified?',
+      dataIndex: 'isVerified',
+      key: 'isVerified',
+      render: (text) => (
+        <div
+          className={`px-3 py-1 w-[100px] flex items-center justify-center rounded-md ${
+            text === 'yes' ? 'bg-green-200' : 'bg-red-300'
+          }`}
+        >
+          {text === 'yes' ? 'Verified ' : 'Unverified'}
+        </div>
+      ),
+    },
+    {
+      title: 'Credits',
+      dataIndex: 'credits',
+      key: 'credits',
+      render: (text) => (
+        <div className=" rounded-md flex  text-[16px]     ">
+          <div className="bg-[#65acaa] flex px-3 py-1 gap-1  !items-center !justify-center rounded-md">
+            <div>
+              <img src={coin} alt="coin" />
+            </div>
+            <div className="mb-0.5">{text}</div>
+          </div>
+        </div>
+      ),
+    },
+
     {
       title: 'Status',
       dataIndex: 'status',
@@ -176,22 +205,48 @@ const Talents = () => {
     setSelectedUser(null)
   }
 
+  const items = [
+    {
+      key: '1',
+      label: 'All Talent',
+      children: (
+        <div>
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={{ position: ['bottomCenter'] }}
+          />
+        </div>
+      ),
+    },
+    {
+      key: '2',
+      label: 'New Talent',
+      children: 'Content of Tab Pane 2',
+    },
+    {
+      key: '3',
+      label: 'Verified Talent',
+      children: 'Content of Tab Pane 3',
+    },
+    {
+      key: '4',
+      label: 'Unverified Talent',
+      children: 'Content of Tab Pane 3',
+    },
+  ]
+
   const Navigate = useNavigate()
 
   return (
     <div className="mb-20">
       <h1
-        className="text-xl font-semibold cursor-pointer mt-5"
+        className="text-xl mb-5 font-semibold cursor-pointer mt-5"
         onClick={() => Navigate(-1)}
       >
         ← Talents
       </h1>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={{ position: ['bottomCenter'] }}
-        className="mt-5"
-      />
+      <Tabs defaultActiveKey="1" items={items} />
 
       {selectedUser && (
         <Modal
@@ -200,64 +255,192 @@ const Talents = () => {
           footer={null}
           className="modal-profile px-2 py-2 "
           centered
-          width={450}
+          width={550}
         >
-          <div className="flex flex-col items-center text-center ">
-            <img
-              src={selectedUser.image}
-              alt={selectedUser.userName}
-              className="w-32 h-32 rounded-full mb-4"
+          <div className="px-7 !text-xl">
+            <div className="flex items-center justify-center">
+              <img
+                src={selectedUser.image}
+                alt={selectedUser.talentName}
+                className="w-32 h-32 rounded-full mb-4"
+              />
+            </div>
+            <Tabs
+              defaultActiveKey="1"
+              items={[
+                {
+                  key: '1',
+                  label: 'General',
+                  children: (
+                    <div>
+                      <div>
+                        <div className=" font-bold text-[16px]">Name</div>
+                        <div className="text-gray-600 text-[17px] mb-3">
+                          {selectedUser.talentName}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className=" font-bold text-[16px]">Email</div>
+                        <div className="text-gray-600 text-[17px] mb-3">
+                          {selectedUser.email}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className=" font-bold text-[16px]">Address</div>
+                        <div className="text-gray-600 text-[17px] mb-3">
+                          {selectedUser.address}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className=" font-bold text-[16px]">Contact</div>
+                        <div className="text-gray-600 text-[17px] mb-3">
+                          {selectedUser.contactNumber}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className=" font-bold text-[16px]">Bio</div>
+                        <div className="text-gray-600 text-[17px] mb-3">
+                          {selectedUser.bio}
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  key: '2',
+                  label: 'Talent',
+                  children: (
+                    <div className="!text-[16px]">
+                      <div className="mb-4 ">
+                        <h2 className=" font-bold">Talent Category</h2>
+                        <Tag
+                          color="blue"
+                          className="text-base px-2 py-0.5 mt-2"
+                        >
+                          {selectedUser.category}
+                        </Tag>
+                      </div>
+
+                      {/* Sub Categories */}
+                      <div className="mb-4">
+                        <h2 className=" font-bold">Sub Category</h2>
+                        <div className="flex flex-wrap gap-1  mt-2">
+                          {selectedUser.subCategory.map((sub, index) => (
+                            <Tag
+                              key={index}
+                              color="cyan"
+                              className="text-base px-2 py-0.5"
+                            >
+                              {sub}
+                            </Tag>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Rating */}
+                      <div className="mb-4">
+                        <h2 className=" font-bold">Rating</h2>
+                        <div className="flex items-center mt-2">
+                          <Rate
+                            disabled
+                            allowHalf
+                            defaultValue={selectedUser.rating}
+                            className="text-yellow-400"
+                          />
+                          <span className="ml-2 text-gray-600 text-sm">
+                            {selectedUser.rating}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Verification Status */}
+                      <div className="mb-4">
+                        <h2 className=" font-bold">Verification Status</h2>
+
+                        <Select
+                          placeholder="Select one"
+                          className="w-full mt-2"
+                          value={
+                            selectedUser.isVerified == 'yes' ? 'true' : 'false'
+                          }
+                        >
+                          <Select.Option value="true">Verified</Select.Option>
+                          <Select.Option value="false">
+                            Unverified
+                          </Select.Option>
+                        </Select>
+                      </div>
+
+                      {/* Verification Documents */}
+                      <div className="mb-4">
+                        <h2 className=" font-bold">Verification Document</h2>
+                        <div className="flex gap-3 mt-2">
+                          {selectedUser.documents.map((doc, index) => (
+                            // <Image
+                            //   key={index}
+                            //   src={doc}
+                            //   width={50}
+                            //   height={50}
+                            //   preview={false}
+                            //   className="border rounded-lg"
+                            // />
+                            <div
+                              key={index}
+                              className="border rounded-lg px-2 py-0.5 bg-gray-100"
+                            >
+                              {doc}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  key: '3',
+                  label: 'Statics',
+                  children: (
+                    <div>
+                      <div>
+                        <div className="font-bold text-[16px]">Credits</div>
+                        <div className=" rounded-md flex  text-[16px]     ">
+                          <div className="bg-[#65acaa] flex px-3 py-1 gap-1  !items-center !justify-center rounded-md">
+                            <div>
+                              <img src={coin} alt="coin" />
+                            </div>
+                            <div className="mb-0.5 text-black">
+                              {selectedUser.credits}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2  border-black mt-4">
+                        <div className="text-center border-r border-t  border-black  p-5">
+                          <span className="text-xl font-bold">{3}</span>
+                          <p className="text-gray-600 ">Total Hired</p>
+                        </div>
+                        <div className="text-center border-t border-black  p-5">
+                          <span className="text-xl font-bold">{3}</span>{' '}
+                          <p className="text-gray-600 ">Upcoming Bookings</p>
+                        </div>
+                        <div className="text-center border-r border-t  border-black  p-5">
+                          <span className="text-xl font-bold">{8}</span>{' '}
+                          <p className="text-gray-600 ">Completed Works</p>
+                        </div>
+                        <div className="text-center border-t  border-black  p-5">
+                          <span className="text-xl font-bold">{1}</span>{' '}
+                          <p className="text-gray-600 ">Cancelled Bookings</p>
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+              ]}
             />
-            <h2 className="text-xl font-semibold">{selectedUser.userName}</h2>
-            <div className="flex items-center">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <FaStar
-                  key={star}
-                  className={`text-xl mr-1 ${
-                    star <= Math.round(selectedUser.reviews)
-                      ? 'text-yellow-500'
-                      : 'text-gray-300'
-                  }`}
-                />
-              ))}
-              <p className="text-gray-600 ml-2">
-                {selectedUser.reviews} Reviews
-              </p>
-            </div>
-            <p className="text-gray-600">{selectedUser.contactNumber}</p>
-            <p className="text-gray-600">{selectedUser.email}</p>
-
-            <div className="flex flex-wrap items-center justify-center  w-full  x-auto gap-2 mt-5">
-              {selectedUser.categories.map((category) => (
-                <span
-                  className="text-gray-600 mr-2 px-2 py-1 bg-blue-100 rounded-md "
-                  key={category}
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-2  border-black mt-4">
-              <div className="text-center border-r border-t  border-black  p-5">
-                <span className="text-xl font-bold">
-                  {selectedUser.totalBook}
-                </span>
-                <p>Total Bookings</p>
-              </div>
-              <div className="text-center border-t border-black  p-5">
-                <span className="text-xl font-bold">{3}</span>{' '}
-                <p>Total Reviews</p>
-              </div>
-              <div className="text-center border-r border-t  border-black  p-5">
-                <span className="text-xl font-bold">{8}</span>{' '}
-                <p>Completed Bookings</p>
-              </div>
-              <div className="text-center border-t  border-black  p-5">
-                <span className="text-xl font-bold">{1}</span>{' '}
-                <p>Cancelled Bookings</p>
-              </div>
-            </div>
           </div>
         </Modal>
       )}

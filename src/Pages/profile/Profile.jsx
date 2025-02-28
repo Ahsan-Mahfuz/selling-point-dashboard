@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Password from './Password'
-import { Button, Form, Input, message, Upload } from 'antd'
+import { Avatar, Button, Form, Input, message, Upload } from 'antd'
 import { UploadOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import profileImage from '../../assets/hye_logo.svg'
@@ -75,12 +75,12 @@ const Profile = () => {
         className="flex items-center space-x-2 cursor-pointer mt-5"
         onClick={() => navigate(-1)}
       >
-        <h1 className="text-xl font-semibold">← Pro User Manage</h1>
+        <h1 className="text-xl font-semibold">← Profile Settings</h1>
       </div>
       <div className=" flex flex-col items-center py-10">
         <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
           <div className="flex flex-col items-center">
-            <img
+            <Avatar
               src={formData.image ? formData.image : profileImage}
               alt="Profile"
               className="w-24 h-24 rounded-full border object-cover"

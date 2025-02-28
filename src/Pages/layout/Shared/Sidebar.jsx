@@ -17,6 +17,7 @@ const Sidebar = () => {
       icon: <PiUsersFourFill />,
     },
     { name: 'Talents', link: '/talents', icon: <FaUserGroup /> },
+    { name: 'Hiring', link: '/hiring', icon: <FaUserGroup /> },
 
     {
       name: 'Earnings',

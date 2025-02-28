@@ -23,7 +23,7 @@ const DashboardHome = () => {
         <div className="flex justify-between items-center bg-white p-3">
           <div className="font-semibold">Recently Joined</div>
           <div>
-            <Link to={'/users'} className="text-[#0F5E5B] hover:text-[#549491]">
+            <Link to={'/clients'} className="text-[#0F5E5B] hover:text-[#549491]">
               View All
             </Link>
           </div>
