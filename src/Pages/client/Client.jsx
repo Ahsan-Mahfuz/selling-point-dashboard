@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { Table, Button, Modal } from 'antd'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
-import 'tailwindcss/tailwind.css'
 import { useNavigate } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 import deleteUser from '../../assets/delete-user.png'
 import { IoIosWarning } from 'react-icons/io'
 import { MdBlock } from 'react-icons/md'
+import coin from '../../assets/coin.svg'
 
-const Users = ({ dashboardHome }) => {
+const Client = ({ dashboardHome }) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
@@ -20,7 +19,7 @@ const Users = ({ dashboardHome }) => {
       userName: 'Roosevelt Kozey',
       contactNumber: '388-790-9022',
       email: 'Eloise24@yahoo.com',
-      totalBook: 3,
+      credits: 300,
       joined: '2025-01-10',
       status: 'Blocked',
     },
@@ -30,7 +29,7 @@ const Users = ({ dashboardHome }) => {
       userName: 'Russell Veum',
       contactNumber: '983-842-7095',
       email: 'Nigelt@hotmail.com',
-      totalBook: 3,
+      credits: 500,
       joined: '2025-01-10',
       status: 'Active',
     },
@@ -40,9 +39,9 @@ const Users = ({ dashboardHome }) => {
 
   const columns = [
     {
-      title: 'User Name',
-      dataIndex: 'userName',
-      key: 'userName',
+      title: 'Client Name',
+      dataIndex: 'clientName',
+      key: 'clientName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
           <img src={record.image} alt="" className="w-12 h-12 rounded-full" />
@@ -61,11 +60,18 @@ const Users = ({ dashboardHome }) => {
       key: 'email',
     },
     {
-      title: 'Total Book',
-      dataIndex: 'totalBook',
-      key: 'totalBook',
+      title: 'Credits',
+      dataIndex: 'credits',
+      key: 'credits',
       render: (text) => (
-        <span className="px-4 py-2 bg-blue-100 rounded-md">{text}</span>
+        <div className=" rounded-md flex  text-[16px]     ">
+          <div className="bg-[#65acaa] flex px-3 py-1 gap-1  !items-center !justify-center rounded-md">
+            <div>
+              <img src={coin} alt="coin" />
+            </div>
+            <div className="mb-0.5">{text}</div>
+          </div>
+        </div>
       ),
     },
     {
@@ -80,7 +86,7 @@ const Users = ({ dashboardHome }) => {
       render: (text) => (
         <div
           className={`badge ${
-            text === 'Active' ? 'bg-green-500' : 'bg-red-500'
+            text === 'Active' ? 'button-color ' : 'bg-red-500'
           } text-white py-1 px-3 rounded w-[100px] flex items-center justify-center`}
         >
           {text}
@@ -95,7 +101,7 @@ const Users = ({ dashboardHome }) => {
           <Button
             type="primary"
             icon={<FaUserCircle />}
-            className="bg-blue-800 text-white"
+            className="button-color text-white"
             onClick={() => handleViewProfile(record)}
           />
           <Button
@@ -103,7 +109,7 @@ const Users = ({ dashboardHome }) => {
             icon={<MdBlock />}
             className={
               selectedUser?.key === record.key
-                ? 'bg-blue-500 text-white'
+                ? 'button-color text-white'
                 : 'bg-red-500 text-white'
             }
             onClick={() => confirmDeleteUser(record)}
@@ -149,7 +155,7 @@ const Users = ({ dashboardHome }) => {
           className="text-xl font-semibold cursor-pointer mt-5"
           onClick={() => Navigate(-1)}
         >
-          ← Users
+          ← Client
         </h1>
       )}
       <Table
@@ -168,7 +174,7 @@ const Users = ({ dashboardHome }) => {
           centered
           width={450}
         >
-          <div className="flex flex-col items-center text-center ">
+          <div className="flex flex-col items-center text-center text-gray-600 ">
             <img
               src={selectedUser.image}
               alt={selectedUser.userName}
@@ -178,13 +184,19 @@ const Users = ({ dashboardHome }) => {
             <p className="text-gray-600">{selectedUser.contactNumber}</p>
             <p className="text-gray-600">{selectedUser.email}</p>
             <p className="text-gray-600">{selectedUser.status}</p>
+            <div className=" rounded-md flex  text-[16px]     ">
+              <div className="bg-[#65acaa] flex px-3 py-1 gap-1  !items-center !justify-center rounded-md">
+                <div>
+                  <img src={coin} alt="coin" />
+                </div>
+                <div className="mb-0.5 text-black">{selectedUser.credits}</div>
+              </div>
+            </div>
 
             <div className="grid grid-cols-2  border-black mt-4">
               <div className="text-center border-r border-t  border-black  p-5">
-                <span className="text-xl font-bold">
-                  {selectedUser.totalBook}
-                </span>
-                <p>Total Bookings</p>
+                <span className="text-xl font-bold">{3}</span>
+                <p>Total Hired</p>
               </div>
               <div className="text-center border-t border-black  p-5">
                 <span className="text-xl font-bold">{3}</span>{' '}
@@ -192,7 +204,7 @@ const Users = ({ dashboardHome }) => {
               </div>
               <div className="text-center border-r border-t  border-black  p-5">
                 <span className="text-xl font-bold">{8}</span>{' '}
-                <p>Completed Bookings</p>
+                <p>Completed Works</p>
               </div>
               <div className="text-center border-t  border-black  p-5">
                 <span className="text-xl font-bold">{1}</span>{' '}
@@ -217,8 +229,7 @@ const Users = ({ dashboardHome }) => {
         }}
         cancelButtonProps={{
           style: {
-            backgroundColor: 'blue',
-            borderColor: 'blue',
+            backgroundColor: 'var(--main-color)',
             color: 'white',
           },
         }}
@@ -243,4 +254,4 @@ const Users = ({ dashboardHome }) => {
   )
 }
 
-export default Users
+export default Client

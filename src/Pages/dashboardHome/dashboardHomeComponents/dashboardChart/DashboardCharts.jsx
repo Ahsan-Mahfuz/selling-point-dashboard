@@ -1,10 +1,10 @@
 import ActivityStatistics from './ActivityStatistics'
-import BookingGrowth from './BookingGrowth'
+import UserGrowth from './UserGrowth'
 
 const DashboardCharts = () => {
   return (
     <div className="flex gap-4 p-4">
-      <BookingGrowth />
+      <UserGrowth />
       <ActivityStatistics />
     </div>
   )

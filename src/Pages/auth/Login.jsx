@@ -14,10 +14,7 @@ const Login = () => {
   return (
     <div className="h-screen  flex flex-col justify-center items-center p-12 ">
       <div className="bg-white flex flex-col justify-center items-center p-12">
-        <img src={hye_logo} alt="logo" />
-        <h1 className="text-4xl font-bold  m-2 viga-text app-default-color ">
-          HYE GATHER
-        </h1>
+        <img src={hye_logo} alt="logo" className="mb-3 w-[250px]" />
         <p className="text-3xl  font-semibold ">Login to account!</p>
         <p className="m-5">Please enter your email and password to continue</p>
 
@@ -67,7 +64,7 @@ const Login = () => {
           <Form.Item>
             <button
               type="submit"
-              className="w-full cursor-pointer poppins-text bg-blue-900 hover:bg-blue-800 text-white h-[42px] rounded-md flex items-center justify-center"
+              className="w-full cursor-pointer poppins-text button-color text-white h-[42px] rounded-md flex items-center justify-center"
             >
               Log in
             </button>
@@ -79,7 +76,7 @@ const Login = () => {
           <span className="text-gray-500 text-sm"></span>{' '}
           <Link
             to={`/forget-password`}
-            className="text-[#0033A0] hover:underline  "
+            className="text-[#0F5E5B] hover:underline  "
           >
             Forget password
           </Link>

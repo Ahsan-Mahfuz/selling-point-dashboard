@@ -9,6 +9,23 @@
   padding: 0;
 }
 
+:root {
+  --main-color: #0F5E5B;
+}
+
+
+.app-default-color {
+  color: #0F5E5B !important;
+}
+
+.button-color {
+  background-color: #0F5E5B
+}
+
+.button-color:hover {
+  background-color: #1d7a75
+}
+
 body {
   font-family: "Poppins", serif !important;
   background-color: #f1f1f4;
@@ -22,9 +39,7 @@ body {
   font-family: "Viga", serif !important;
 }
 
-.app-default-color {
-  color: #0033A0;
-}
+
 
 ::-webkit-scrollbar {
   display: none;

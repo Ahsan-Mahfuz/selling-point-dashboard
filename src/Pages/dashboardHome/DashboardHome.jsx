@@ -1,7 +1,7 @@
-import Carousel from './dashboardHomeComponents/Carousel'
 import DashboardCharts from './dashboardHomeComponents/dashboardChart/DashboardCharts'
-import Users from '../users/Users'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import BusinessOverview from './dashboardHomeComponents/BusinessOverview'
+import Client from '../client/Client'
 
 const DashboardHome = () => {
   const Navigate = useNavigate()
@@ -15,11 +15,21 @@ const DashboardHome = () => {
           ← Dashboard
         </h1>
       </div>
-      <Carousel />
+      <BusinessOverview />
       <div className="mt-10 bg-white  rounded-lg card-shadow">
         <DashboardCharts />
       </div>
-      <Users dashboardHome={true} />
+      <div className="mt-5">
+        <div className="flex justify-between items-center bg-white p-3">
+          <div className="font-semibold">Recently Joined</div>
+          <div>
+            <Link to={'/users'} className="text-[#0F5E5B] hover:text-[#549491]">
+              View All
+            </Link>
+          </div>
+        </div>
+        <Client dashboardHome={true} />
+      </div>
     </div>
   )
 }

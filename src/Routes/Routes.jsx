@@ -8,17 +8,13 @@ import SendOtp from '../Pages/auth/SendOtp'
 import AdminRoute from '../ProtectedRoute/AdminRoute'
 import Dashboard from '../Pages/layout/Dashboard'
 import DashboardHome from '../Pages/dashboardHome/DashboardHome'
-import Users from '../Pages/users/Users'
-import Vendors from '../Pages/vendors/Vendors'
-import Bookings from '../Pages/bookings/Bookings'
 import Earnings from '../Pages/earnings/Earnings'
 import PrivacyPolicy from '../Pages/privacyPolicy/PrivacyPolicy'
 import TermsAndConditions from '../Pages/termsAndConditions/TermsAndConditions'
 import Profile from '../Pages/profile/Profile'
-import PromoCodes from '../Pages/promoCodes/PromoCodes'
 import ServiceCategory from '../Pages/serviceCategory/ServiceCategory'
-import Subscription from '../Pages/subscription/Subscription'
-import FAQ from '../Pages/faq/FAQ'
+import Client from '../Pages/client/Client'
+import Talents from '../Pages/talents/Talents'
 
 const router = createBrowserRouter([
   {
@@ -33,19 +29,15 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardHome />,
       },
-
       {
-        path: '/users',
-        element: <Users />,
+        path: '/clients',
+        element: <Client />,
       },
       {
-        path: '/vendors',
-        element: <Vendors />,
+        path: '/talents',
+        element: <Talents />,
       },
-      {
-        path: '/bookings',
-        element: <Bookings />,
-      },
+     
       {
         path: '/earnings',
         element: <Earnings />,
@@ -65,18 +57,6 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
-      },
-      {
-        path: '/promo-codes',
-        element: <PromoCodes />,
-      },
-      {
-        path: '/subscription',
-        element: <Subscription />,
-      },
-      {
-        path: '/frequent-asked-question',
-        element: <FAQ />,
       },
     ],
   },

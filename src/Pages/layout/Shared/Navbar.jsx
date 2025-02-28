@@ -59,8 +59,8 @@ const Navbar = () => {
   )
 
   return (
-    <div className="flex justify-between items-center bg-white p-5 shadow-md rounded-md">
-      <p className="text-2xl font-bold text-[#0033A0]">Dashboard</p>
+    <div className="flex justify-between items-center  bg-white p-5 shadow-md rounded-md">
+      <p className="text-2xl font-bold app-default-color ">Dashboard</p>
       <div className="flex items-center gap-4">
         <Popover
           content={NotificationContent}
@@ -69,7 +69,7 @@ const Navbar = () => {
           visible={visible}
           onVisibleChange={handleVisibleChange}
         >
-          <button className="relative text-2xl text-blue-600 p-2 rounded-full border transition duration-300 bg-blue-900 hover:bg-blue-700 hover:shadow-md">
+          <button className="relative text-2xl text-[--main-color] p-2 rounded-full border transition duration-300 button-color hover:shadow-md">
             <MdNotificationsNone className="text-white " />
             {notifications.some((notif) => !notif.read) && (
               <span className="absolute top-0 right-0 bg-red-500 text-white text-xs h-4 w-4 font-bold px-1 rounded-full">
@@ -80,7 +80,7 @@ const Navbar = () => {
         </Popover>
         <Link
           to="/profile"
-          className="flex items-center gap-2 border p-2 rounded-md text-white bg-blue-900 transition duration-300 hover:bg-blue-700 hover:shadow-md"
+          className="flex items-center gap-2 border p-2 rounded-md text-white  transition duration-300 button-color hover:shadow-md"
         >
           <FaUserCircle className="text-3xl text-white" />
           <div className="text-left ">

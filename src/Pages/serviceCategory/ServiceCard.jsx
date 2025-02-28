@@ -18,7 +18,7 @@ const ServiceCard = ({ service, onEdit, onDelete }) => {
           {service.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-blue-900 text-white text-xs px-2 py-1 rounded-full"
+              className="button-color text-white text-xs px-2 py-1 rounded-full"
             >
               {tag}
             </span>
@@ -29,7 +29,7 @@ const ServiceCard = ({ service, onEdit, onDelete }) => {
             onClick={() => onEdit(service)}
             className="btn btn-primary text-xl border-r w-full border-red-600 "
           >
-            <RiEdit2Line className="text-blue-800" />
+            <RiEdit2Line className="app-default-color" />
           </button>
           <button
             onClick={() => onDelete(service.id)}

@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Checkbox } from 'antd'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import hye_logo from '../../assets/hye_logo.svg'
@@ -13,10 +13,8 @@ const ResetPassword = () => {
   return (
     <div className="h-screen flex items-center justify-center w-[500px] mx-auto">
       <div className=" shadow bg-white flex flex-col justify-center items-center w-full  p-12 rounded-md">
-        <img src={hye_logo} alt="logo" />
-        <h1 className="text-4xl font-bold  m-2 viga-text app-default-color ">
-          HYE GATHER
-        </h1>
+        <img src={hye_logo} alt="logo" className="mb-3 w-[250px]"  />
+        
         <p className="text-3xl  mb-8 font-bold">Set new password</p>
 
         <Form layout="vertical" onFinish={onFinish} className="w-full max-w-sm">
@@ -64,7 +62,7 @@ const ResetPassword = () => {
           <Form.Item>
             <button
               type="submit"
-              className="w-full bg-blue-900 hover:bg-blue-800 text-white h-[42px] rounded-md"
+              className="w-full button-color text-white h-[42px] rounded-md"
             >
               Reset Password
             </button>
@@ -72,7 +70,7 @@ const ResetPassword = () => {
         </Form>
 
         <div className="text-center">
-          <Link to="/login" className="text-blue-800 hover:underline ">
+          <Link to="/login" className="app-default-color hover:underline ">
             Sign in instead
           </Link>
         </div>

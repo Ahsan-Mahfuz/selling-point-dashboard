@@ -48,9 +48,9 @@ const EarningsGrowthChart = () => {
     labels: months,
     datasets: [
       {
-        label: 'User Growth',
+        label: 'Client and Talent Growth',
         data: [100, 80, 75, 78, 77, 90, 85, 80, 75, 78, 76, 79],
-        backgroundColor: '#0033A0',
+        backgroundColor: '#0F5E5B',
       },
     ],
   }
@@ -58,8 +58,8 @@ const EarningsGrowthChart = () => {
   return (
     <div className=" w-full bg-white p-4 rounded-lg shadow">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-lg font-semibold">Booking Growth </h2>
-        <select className="p-2 bg-blue-100  rounded-md cursor-pointer outline-none text-xs">
+        <h2 className="text-lg font-semibold">Earnings Growth </h2>
+        <select className="p-2 bg-green-100  rounded-md cursor-pointer outline-none text-xs">
           {years.map((year) => (
             <option key={year} value={year} className=" p-2 cursor-pointer">
               {year}

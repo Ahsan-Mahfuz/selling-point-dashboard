@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js'
 
@@ -6,12 +6,12 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title)
 
 const ActivityStatistics = () => {
   const allData = {
-    labels: ['Active users', 'Active Vendors', 'Active bookings'],
+    labels: ['Active clients', 'Active talents'],
     datasets: [
       {
         label: 'Activity Statistics',
-        data: [120, 120, 120],
-        backgroundColor: ['#ff4c4c', '#ffbf00', '#00c3ff'],
+        data: [120, 120],
+        backgroundColor: ['#0F5E5B', '#7FB5B1'],
         borderWidth: 0,
       },
     ],
@@ -55,24 +55,17 @@ const ActivityStatistics = () => {
 
       <div className="flex flex-col justify-center items-center text-sm">
         <div className="flex items-center gap-1 ">
-          <span className="w-3 h-3  bg-red-500 rounded-full mr-2"></span>
-          Active users
-          <span className="px-3 py-1 bg-red-200 rounded-md">
+          <span className="w-3 h-3  bg-[#0F5E5B] rounded-full mr-2"></span>
+          Active Clients
+          <span className="px-3 py-1 bg-[#0F5E5B] text-white rounded-md">
             {allData.datasets[0]?.data[0]}
           </span>
         </div>
         <div className="flex items-center gap-1 mt-1">
-          <span className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
-          Active Vendors{' '}
-          <span className="px-3 py-1 bg-yellow-200 rounded-md">
+          <span className="w-3 h-3 bg-[#7FB5B1] rounded-full mr-2"></span>
+          Active Talents
+          <span className="px-3 py-1 bg-[#7FB5B1]  rounded-md">
             {allData.datasets[0]?.data[1]}
-          </span>
-        </div>
-        <div className="flex items-center gap-1 mt-1">
-          <span className="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
-          Active bookings{' '}
-          <span className="px-3 py-1 bg-blue-200 rounded-md">
-            {allData.datasets[0]?.data[2]}
           </span>
         </div>
       </div>

@@ -1,48 +1,45 @@
 import React, { useState } from 'react'
 import { Table, Button, Modal } from 'antd'
-import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
-import 'tailwindcss/tailwind.css'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
 import { MdBlock } from 'react-icons/md'
 import { IoIosWarning } from 'react-icons/io'
+import deleteUser from '../../assets/delete-user.png'
+import coin from '../../assets/coin.svg'
 
-const VendorTable = () => {
+
+const EarningsTable = () => {
   const data = [
     {
       key: '1',
       image: 'https://randomuser.me/api/portraits/men/2.jpg',
       name: 'Charlotte Mante',
       email: 'frostman@mac.com',
-      type: 'Subscription Purchase',
+      type: 'credit bay',
       date: '16/08/2013',
-      plan: 'Monthly',
+      userType: 'Client',
       amount: '$29',
-      subscription: 'Blocked', 
-      reviews: 4.0,
-      reviewsNumber: 125,
+      status: 'Blocked',
+      credits: 300,
       contactNumber: '388-790-9022',
-
     },
     {
       key: '2',
       image: 'https://randomuser.me/api/portraits/men/10.jpg',
       name: 'Margaret Hessel II',
       email: 'chronos@aol.com',
-      type: 'Subscription Renew',
+      type: 'credit bay',
       date: '28/10/2012',
-      plan: 'Yearly',
+      userType: 'Talent',
       amount: '$290',
-      subscription: 'Active',
-      reviews: 5.0,
-      reviewsNumber: 100,
+      status: 'Active',
+      credits: 500,
       contactNumber: '388-790-9022',
-
     },
   ]
 
   const columns = [
     {
-      title: 'Vendor Name',
+      title: 'User Name',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => (
@@ -68,9 +65,9 @@ const VendorTable = () => {
       key: 'date',
     },
     {
-      title: 'Plan',
-      dataIndex: 'plan',
-      key: 'plan',
+      title: 'User Type',
+      dataIndex: 'userType',
+      key: 'userType',
     },
     {
       title: 'Amount',
@@ -78,13 +75,13 @@ const VendorTable = () => {
       key: 'amount',
     },
     {
-      title: 'Subscription',
-      dataIndex: 'subscription',
-      key: 'subscription',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
       render: (text) => (
         <div
           className={`badge ${
-            text === 'Active' ? 'bg-green-500' : 'bg-red-500'
+            text === 'Active' ? 'button-color ' : 'bg-red-500'
           } text-white py-1 px-3 rounded w-[100px] flex items-center justify-center`}
         >
           {text}
@@ -99,7 +96,7 @@ const VendorTable = () => {
           <Button
             type="primary"
             icon={<FaUserCircle />}
-            className="bg-blue-800 text-white"
+            className="button-color text-white"
             onClick={() => handleViewProfile(record)}
           />
           <Button
@@ -107,7 +104,7 @@ const VendorTable = () => {
             icon={<MdBlock />}
             className={
               selectedUser?.key === record.key
-                ? 'bg-blue-500 text-white'
+                ? 'button-color text-white'
                 : 'bg-red-500 text-white'
             }
             onClick={() => confirmDeleteUser(record)}
@@ -139,12 +136,10 @@ const VendorTable = () => {
 
   const handleDeleteUser = () => {
     const user = { ...selectedUser }
-    user.subscription = user.subscription === 'Active' ? 'Blocked' : 'Active'
+    user.status = user.status === 'Active' ? 'Blocked' : 'Active'
     setData(
       dataState.map((item) =>
-        item.key === user.key
-          ? { ...item, subscription: user.subscription }
-          : item
+        item.key === user.key ? { ...item, status: user.status } : item
       )
     )
     setIsDeleteModalVisible(false)
@@ -153,79 +148,59 @@ const VendorTable = () => {
 
   return (
     <div className="mt-5">
-      <h1 className="text-xl font-semibold py-5 bg-white mb-2 px-2">Earnings History </h1>
+      <h1 className="text-xl font-semibold py-5 bg-white mb-2 px-2">
+        Earnings History{' '}
+      </h1>
       <Table
         columns={columns}
         dataSource={dataState}
         pagination={{ pageSize: 4, position: ['bottomCenter'] }}
       />
+
       {selectedUser && (
         <Modal
           visible={isModalVisible}
           onCancel={handleCloseModal}
           footer={null}
-          className="modal-profile px-2 py-2"
+          className="modal-profile px-2 py-2 "
           centered
           width={450}
         >
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center text-gray-600 ">
             <img
-              src={selectedUser.image || '/path/to/placeholder-image.jpg'}
-              alt={selectedUser.name || 'User'}
+              src={selectedUser.image}
+              alt={selectedUser.userName}
               className="w-32 h-32 rounded-full mb-4"
             />
-            <h2 className="text-xl font-semibold">
-              {selectedUser.name || 'N/A'}
-            </h2>
-            <div className="flex items-center">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <FaStar
-                  key={star}
-                  className={`text-xl mr-1 ${
-                    star <= Math.round(selectedUser.reviews)
-                      ? 'text-yellow-500'
-                      : 'text-gray-300'
-                  }`}
-                />
-              ))}
-              <p className="text-gray-600 ml-2">
-                {selectedUser.reviews} Reviews
-              </p>
-            </div>
-            <p className="text-gray-600">
-              {selectedUser.contactNumber || 'N/A'}
-            </p>
+            <h2 className="text-xl font-semibold">{selectedUser.userName}</h2>
+            <p className="text-gray-600">{selectedUser.contactNumber}</p>
             <p className="text-gray-600">{selectedUser.email}</p>
-
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
-              {selectedUser.categories?.map((category, index) => (
-                <span
-                  className="text-gray-600 mr-2 px-2 py-1 bg-blue-100 rounded-md"
-                  key={index}
-                >
-                  {category}
-                </span>
-              ))}
+            <p className="text-gray-600">{selectedUser.status}</p>
+            <div className=" rounded-md flex  text-[16px]     ">
+              <div className="bg-[#65acaa] flex px-3 py-1 gap-1  !items-center !justify-center rounded-md">
+                <div>
+                  <img src={coin} alt="coin" />
+                </div>
+                <div className="mb-0.5 text-black">{selectedUser.credits}</div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 border-black mt-4">
-              <div className="text-center border-r border-t p-5">
-                <span className="text-xl font-bold">
-                  {selectedUser.totalBook || 0}
-                </span>
-                <p>Total Bookings</p>
-              </div>
-              <div className="text-center border-t p-5">
+            <div className="grid grid-cols-2  border-black mt-4">
+              <div className="text-center border-r border-t  border-black  p-5">
                 <span className="text-xl font-bold">{3}</span>
-                <p>Complete Bookings</p>
+                <p>Total Hired</p>
               </div>
-              <div className="text-center border-r border-t p-5">
-                <span className="text-xl font-bold">{8}</span>
-                <p>Cancel Bookings</p>
+              <div className="text-center border-t border-black  p-5">
+                <span className="text-xl font-bold">{3}</span>{' '}
+                <p>Upcoming Bookings</p>
               </div>
-              <div className="text-center border-t p-5">
-                <span className="text-xl font-bold">{1}</span>
-                <p>Total Reviews</p>
+              <div className="text-center border-r border-t  border-black  p-5">
+                <span className="text-xl font-bold">{8}</span>{' '}
+                <p>Completed Works</p>
+              </div>
+              <div className="text-center border-t  border-black  p-5">
+                <span className="text-xl font-bold">{1}</span>{' '}
+                <p>Cancelled Bookings</p>
               </div>
             </div>
           </div>
@@ -237,9 +212,7 @@ const VendorTable = () => {
         onCancel={() => setIsDeleteModalVisible(false)}
         onOk={handleDeleteUser}
         okText={
-          selectedUser?.subscription === 'Active'
-            ? 'Yes, block'
-            : 'Yes, unblock'
+          selectedUser?.status === 'Active' ? 'Yes, block' : 'Yes, unblock'
         }
         cancelText="Cancel"
         centered
@@ -248,8 +221,7 @@ const VendorTable = () => {
         }}
         cancelButtonProps={{
           style: {
-            backgroundColor: 'blue',
-            borderColor: 'blue',
+            backgroundColor: 'var(--main-color)',
             color: 'white',
           },
         }}
@@ -257,7 +229,7 @@ const VendorTable = () => {
         <div
           className="text-lg bg-no-repeat bg-left-top bg-contain h-[200px] object-contain"
           style={{
-            backgroundImage: `url(/path/to/your/warning-image.jpg)`, // Add image URL here
+            backgroundImage: `url(${deleteUser})`,
           }}
         >
           <div className="flex justify-center items-end">
@@ -266,8 +238,7 @@ const VendorTable = () => {
           <div className="font-bold text-5xl text-center">Warning</div>
           <div className="p-5 text-center text-red-700">
             Are you sure you want to{' '}
-            {selectedUser?.subscription === 'Active' ? 'block' : 'unblock'} this
-            user?
+            {selectedUser?.status === 'Active' ? 'block' : 'unblock'} this user?
           </div>
         </div>
       </Modal>
@@ -275,4 +246,4 @@ const VendorTable = () => {
   )
 }
 
-export default VendorTable
+export default EarningsTable

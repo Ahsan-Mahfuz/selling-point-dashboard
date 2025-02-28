@@ -5,6 +5,7 @@ import { Modal, Input, Form, message, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import ServiceCard from './ServiceCard'
 import { IoIosWarning } from 'react-icons/io'
+import deleteUser from '../../assets/delete-user.png'
 
 const servicesData = [
   {
@@ -144,7 +145,7 @@ const ServiceCategory = () => {
         <div className="card bg-gray-200 w-[320px] h-[350px] p-6 rounded-lg flex flex-col justify-center items-center">
           <button
             onClick={handleAddNew}
-            className="text-blue-900 text-xl px-4 py-2 rounded-md flex items-center gap-2"
+            className="app-default-color text-xl px-4 py-2 rounded-md flex items-center gap-2"
           >
             <IoAddCircleOutline className="text-[100px]" />
           </button>
@@ -158,6 +159,12 @@ const ServiceCategory = () => {
         onOk={handleModalOk}
         onCancel={handleModalCancel}
         centered
+        okButtonProps={{
+          style: {
+            backgroundColor: 'var(--main-color)',
+            color: 'white',
+          },
+        }}
       >
         <Form
           form={form}
@@ -165,14 +172,18 @@ const ServiceCategory = () => {
           requiredMark={false}
           className="p-5"
         >
-          <div className="text-2xl font-bold text-center mb-5">
+          <div className="text-3xl font-bold text-center mb-2">
             {editingService ? 'Edit Service Category' : 'Add Service Category'}
           </div>
+          <p className="text-gray-500 mb-3 text-center">
+            Please fill out the details below to add a new service category.
+          </p>
           <Form.Item
             name="image"
             rules={[
               { required: true, message: 'Please upload the service image!' },
             ]}
+            className='mt-5'
           >
             <Upload
               name="image"
@@ -191,31 +202,66 @@ const ServiceCategory = () => {
                 <div>
                   <UploadOutlined />
                   <div>Upload</div>
-                </div>  
+                </div>
               )}
             </Upload>
           </Form.Item>
 
-
           <Form.Item
             name="name"
-            label="Category Name"
+            label="Service Category Name"
             rules={[
               { required: true, message: 'Please enter the category name!' },
             ]}
           >
             <Input className="h-[48px]" placeholder="Beverages" />
           </Form.Item>
+
           <Form.Item
             name="tags"
-            label="Add Service Tags (comma separated)"
+            label="Add Service Style (comma separated)"
             rules={[
-              { required: true, message: 'Please enter at least one tag!' },
+              {
+                required: true,
+                message:
+                  'Note: Please add your Service Style separated by ( , ) commas ',
+              },
             ]}
           >
             <Input
               className="h-[48px]"
-              placeholder="Mediterranean, Mexican, Asian"
+              placeholder="Animation, Streaming, Vlogs"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="tags"
+            label="Service Type (comma separated)"
+            rules={[
+              {
+                required: true,
+                message:
+                  'Note: Please add your Service Type separated by ( , ) commas ',
+              },
+            ]}
+          >
+            <Input className="h-[48px]" placeholder="FLV, AVI, MP4 " />
+          </Form.Item>
+
+          <Form.Item
+            name="tags"
+            label="Add Service Tool (comma separated)"
+            rules={[
+              {
+                required: true,
+                message:
+                  'Note: Please add your Service Tool separated by ( , ) commas ',
+              },
+            ]}
+          >
+            <Input
+              className="h-[48px]"
+              placeholder="I Movie, Da Vinci, Capcut "
             />
           </Form.Item>
         </Form>
@@ -229,14 +275,25 @@ const ServiceCategory = () => {
         okText="Yes"
         cancelText="No"
         centered
+        okButtonProps={{
+          style: {
+            backgroundColor: 'var(--main-color)',
+            color: 'white',
+          },
+        }}
       >
-        <div className="text-lg bg-no-repeat bg-left-top bg-contain h-[200px] object-contain">
+        <div
+          className="text-lg bg-no-repeat bg-left-top bg-contain h-[200px] object-contain"
+          style={{
+            backgroundImage: `url(${deleteUser})`,
+          }}
+        >
           <div className="flex justify-center items-end">
             <IoIosWarning className="text-7xl text-red-700" />
           </div>
           <div className="font-bold text-5xl text-center">Warning</div>
           <div className="p-5 text-center text-red-700">
-            Are you sure you want to delete the service {' '}
+            Are you sure you want to delete the service{' '}
             <strong>
               {services.find((service) => service.id === deleteId)?.name}
             </strong>

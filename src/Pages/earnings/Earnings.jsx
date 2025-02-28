@@ -1,8 +1,9 @@
 import React from 'react'
-import VendorTable from './VendorTable'
+import VendorTable from './EarningsTable'
 import EarningsCard from './EarningsCard'
 import EarningsGrowthChart from './EarningsGrowthChart'
 import { useNavigate } from 'react-router-dom'
+import EarningsTable from './EarningsTable'
 
 const Earnings = () => {
   const Navigate = useNavigate()
@@ -19,7 +20,7 @@ const Earnings = () => {
         <EarningsGrowthChart />
       </section>
       <section>
-        <VendorTable />
+        <EarningsTable />
       </section>
     </div>
   )

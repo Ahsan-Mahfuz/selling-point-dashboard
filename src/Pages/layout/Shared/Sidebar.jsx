@@ -1,28 +1,23 @@
 import { FaHome, FaShieldAlt } from 'react-icons/fa'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { FaUserGroup } from 'react-icons/fa6'
 import { CgProfile } from 'react-icons/cg'
 import { CiLogout } from 'react-icons/ci'
 import { SiFuturelearn } from 'react-icons/si'
 import hye_logo from '../../../assets/hye_logo.svg'
-import { PiNotebookFill } from 'react-icons/pi'
-import { BiSolidOffer } from 'react-icons/bi'
 import { GrServices } from 'react-icons/gr'
 import { PiUsersFourFill } from 'react-icons/pi'
-import { MdPaid } from 'react-icons/md'
-import { isAction } from '@reduxjs/toolkit'
 
 const Sidebar = () => {
   const menuItems = [
     { name: 'Dashboard', link: '/', icon: <FaHome /> },
     {
-      name: 'Users',
-      link: '/users',
+      name: 'Clients',
+      link: '/clients',
       icon: <PiUsersFourFill />,
     },
-    { name: 'Vendors', link: '/vendors', icon: <FaUserGroup /> },
-    { name: 'Bookings', link: '/bookings', icon: <PiNotebookFill /> },
-    { name: 'Subscription', link: '/subscription', icon: <MdPaid /> },
+    { name: 'Talents', link: '/talents', icon: <FaUserGroup /> },
+
     {
       name: 'Earnings',
       link: '/earnings',
@@ -33,16 +28,7 @@ const Sidebar = () => {
       link: '/service-category',
       icon: <GrServices />,
     },
-    {
-      name: 'Promo Codes',
-      link: '/promo-codes',
-      icon: <BiSolidOffer />,
-    },
-    {
-      name: 'FAQ',
-      link: '/frequent-asked-question',
-      icon: <BiSolidOffer />,
-    },
+
     {
       name: 'Profile Settings',
       link: '/profile',
@@ -63,10 +49,7 @@ const Sidebar = () => {
         className="flex flex-col justify-center items-center cursor-pointer"
         onClick={() => Navigate('/')}
       >
-        <img src={hye_logo} alt="logo" className="mt-5 " />
-        <h2 className="app-default-color font-bold text-center mb-5 text-3xl ">
-          HYE GATHER
-        </h2>
+        <img src={hye_logo} alt="logo" className="my-5 w-[250px]" />
       </div>
       <ul>
         {menuItems.map((item, index) => (
@@ -74,8 +57,8 @@ const Sidebar = () => {
             to={item?.link}
             key={index}
             className={({ isActive }) =>
-              `flex items-center  py-3 rounded-3xl my-1 pl-6 hover:bg-[#0033A0] cursor-pointer hover:text-white ${
-                isActive ? 'bg-[#0033A0] text-white' : ''
+              `flex items-center  py-3 rounded-3xl my-1 pl-6 hover:bg-[#0F5E5B] cursor-pointer hover:text-white ${
+                isActive ? 'button-color text-white' : ''
               }`
             }
           >

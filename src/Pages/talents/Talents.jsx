@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Table, Button, Modal } from 'antd'
-import 'tailwindcss/tailwind.css'
 import { useNavigate } from 'react-router-dom'
 import { FaStar, FaUserCircle } from 'react-icons/fa'
 import deleteUser from '../../assets/delete-user.png'
 import { IoIosWarning } from 'react-icons/io'
 import { MdBlock } from 'react-icons/md'
 
-const Vendors = () => {
+const Talents = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
@@ -21,7 +20,7 @@ const Vendors = () => {
       email: 'Eloise24@yahoo.com',
       totalBook: 3,
       joined: '2025-01-10',
-      subscription: 'Blocked',
+      status: 'Blocked',
       categories: [
         'cat1',
         'cat2',
@@ -44,7 +43,7 @@ const Vendors = () => {
       email: 'Nigelt@hotmail.com',
       totalBook: 3,
       joined: '2025-01-10',
-      subscription: 'Active',
+      status: 'Active',
       reviews: 4,
       reviewsNumber: 125,
       categories: ['cat2', 'cat3'],
@@ -55,9 +54,9 @@ const Vendors = () => {
 
   const columns = [
     {
-      title: 'User Name',
-      dataIndex: 'userName',
-      key: 'userName',
+      title: 'Talent Name',
+      dataIndex: 'talentName',
+      key: 'talentName',
       render: (text, record) => (
         <div className="flex items-center space-x-3">
           <img src={record.image} alt="" className="w-12 h-12 rounded-full" />
@@ -111,13 +110,13 @@ const Vendors = () => {
       key: 'joined',
     },
     {
-      title: 'Subscription',
-      dataIndex: 'subscription',
-      key: 'subscription',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
       render: (text) => (
         <div
           className={`badge ${
-            text === 'Active' ? 'bg-green-500' : 'bg-red-500'
+            text === 'Active' ? 'button-color ' : 'bg-red-500'
           } text-white py-1 px-3 rounded w-[100px] flex items-center justify-center`}
         >
           {text}
@@ -132,7 +131,7 @@ const Vendors = () => {
           <Button
             type="primary"
             icon={<FaUserCircle />}
-            className="bg-blue-800 text-white"
+            className="button-color text-white"
             onClick={() => handleViewProfile(record)}
           />
           <Button
@@ -140,7 +139,7 @@ const Vendors = () => {
             icon={<MdBlock />}
             className={
               selectedUser?.key === record.key
-                ? 'bg-blue-500 text-white'
+                ? 'button-color text-white'
                 : 'bg-red-500 text-white'
             }
             onClick={() => confirmDeleteUser(record)}
@@ -167,12 +166,10 @@ const Vendors = () => {
 
   const handleDeleteUser = () => {
     const user = { ...selectedUser }
-    user.subscription = user.subscription === 'Active' ? 'Blocked' : 'Active'
+    user.status = user.status === 'Active' ? 'Blocked' : 'Active'
     setData(
       data.map((item) =>
-        item.key === user.key
-          ? { ...item, subscription: user.subscription }
-          : item
+        item.key === user.key ? { ...item, status: user.status } : item
       )
     )
     setIsDeleteModalVisible(false)
@@ -187,7 +184,7 @@ const Vendors = () => {
         className="text-xl font-semibold cursor-pointer mt-5"
         onClick={() => Navigate(-1)}
       >
-        ← Vendors
+        ← Talents
       </h1>
       <Table
         columns={columns}
@@ -270,9 +267,7 @@ const Vendors = () => {
         onCancel={() => setIsDeleteModalVisible(false)}
         onOk={handleDeleteUser}
         okText={
-          selectedUser?.subscription === 'Active'
-            ? `Yes, block `
-            : `Yes, unblock `
+          selectedUser?.status === 'Active' ? `Yes, block ` : `Yes, unblock `
         }
         cancelText="Cancel"
         centered
@@ -281,8 +276,7 @@ const Vendors = () => {
         }}
         cancelButtonProps={{
           style: {
-            backgroundColor: 'blue',
-            borderColor: 'blue',
+            backgroundColor: 'var(--main-color)',
             color: 'white',
           },
         }}
@@ -299,8 +293,7 @@ const Vendors = () => {
           <div className="font-bold text-5xl text-center">Warning</div>
           <div className="p-5 text-center text-red-700">
             Are you sure you want to{' '}
-            {selectedUser?.subscription === 'Active' ? 'block' : 'unblock'} this
-            user?
+            {selectedUser?.status === 'Active' ? 'block' : 'unblock'} this user?
           </div>
         </div>
       </Modal>
@@ -308,4 +301,4 @@ const Vendors = () => {
   )
 }
 
-export default Vendors
+export default Talents
