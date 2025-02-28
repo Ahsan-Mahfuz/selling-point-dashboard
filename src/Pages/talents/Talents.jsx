@@ -222,17 +222,39 @@ I'm sorry, but I need more specific instructions to generate the code you need. 
     {
       key: '2',
       label: 'New Talent',
-      children: 'Content of Tab Pane 2',
+      children: (
+        <div>
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={{ position: ['bottomCenter'] }}
+          />
+        </div>
+      ),
     },
     {
       key: '3',
       label: 'Verified Talent',
-      children: 'Content of Tab Pane 3',
+      children: (
+        <div>
+          <Table
+            columns={columns}
+            dataSource={data.filter((item) => item.isVerified === 'yes')}
+            pagination={{ position: ['bottomCenter'] }}
+          />
+        </div>
+      ),
     },
     {
       key: '4',
       label: 'Unverified Talent',
-      children: 'Content of Tab Pane 3',
+      children: (
+        <Table
+          columns={columns}
+          dataSource={data.filter((item) => item.isVerified === 'no')}
+          pagination={{ position: ['bottomCenter'] }}
+        />
+      ),
     },
   ]
 
