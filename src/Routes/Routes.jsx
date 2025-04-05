@@ -16,6 +16,7 @@ import ServiceCategory from '../Pages/serviceCategory/ServiceCategory'
 import Client from '../Pages/client/Client'
 import Talents from '../Pages/talents/Talents'
 import Hiring from '../Pages/hiring/Hiring'
+import Settings from '../Pages/settings/Settings'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/clients',
         element: <Client />,
+      },
+      {
+        path: '/settings',
+        element: <Settings />,
       },
       {
         path: '/talents',

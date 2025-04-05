@@ -433,7 +433,7 @@ I'm sorry, but I need more specific instructions to generate the code you need. 
                 },
                 {
                   key: '3',
-                  label: 'Statics',
+                  label: 'Talent Statistics',
                   children: (
                     <div>
                       <div>

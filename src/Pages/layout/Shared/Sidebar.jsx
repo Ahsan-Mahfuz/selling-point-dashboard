@@ -35,6 +35,11 @@ const Sidebar = () => {
       link: '/profile',
       icon: <CgProfile />,
     },
+    {
+      name: 'Settings',
+      link: '/settings',
+      icon: <CgProfile />,
+    },
     { name: 'Privacy Policy', link: '/privacy-policy', icon: <FaShieldAlt /> },
     {
       name: 'Terms & condition',
